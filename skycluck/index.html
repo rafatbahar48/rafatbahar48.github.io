@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sky Cluck - Fly a chicken from the farm to space</title>
+<meta name="description" content="Tap to flap a pixel-art chicken through four worlds, from a sleepy farm all the way to outer space. Play free in your browser or get it on Google Play.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b1b4a">
+<link rel="icon" href="assets/favicon.png">
+<link rel="canonical" href="https://rafatbahar48.github.io/skycluck/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sky Cluck - fly a chicken from the farm to space">
+<meta property="og:description" content="Tap to flap through four pixel-art worlds. Play free right in your browser, or get it on Google Play.">
+<meta property="og:image" content="https://rafatbahar48.github.io/skycluck/assets/og-image.jpg">
+<meta property="og:url" content="https://rafatbahar48.github.io/skycluck/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sky Cluck - fly a chicken from the farm to space">
+<meta name="twitter:description" content="Tap to flap through four pixel-art worlds. Play free right in your browser, or get it on Google Play.">
+<meta name="twitter:image" content="https://rafatbahar48.github.io/skycluck/assets/og-image.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"Sky Cluck","description":"Tap to flap a pixel-art chicken through four worlds, from a sleepy farm all the way to outer space.","genre":"Arcade","gamePlatform":["Android","Web browser"],"url":"https://rafatbahar48.github.io/skycluck/","image":"https://rafatbahar48.github.io/skycluck/assets/og-image.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+@font-face { font-family: 'Jersey 10'; src: url('assets/Jersey10.ttf') format('truetype'); font-display: swap; }
+:root {
+  --purple: #2b1b4a; --purple-top: #46267a; --purple-bot: #180d32;
+  --cream: #fdedc8; --orange: #f2823d; --orange-dark: #c96a15; --ink: #1a0f33;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html { background: #180d32; }
+body {
+  margin: 0; color: var(--cream); font-family: 'Jersey 10', 'Trebuchet MS', sans-serif; font-size: 22px; line-height: 1.25;
+  min-height: 100vh; -webkit-font-smoothing: none;
+}
+.bg { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--purple-top) 0%, var(--purple-bot) 100%); }
+.stars { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, #fdedc8 99%, transparent), radial-gradient(2px 2px at 82% 12%, #bfa9ff 99%, transparent),
+    radial-gradient(3px 3px at 33% 72%, #ffc878 99%, transparent), radial-gradient(2px 2px at 64% 58%, #fdedc8 99%, transparent),
+    radial-gradient(2px 2px at 90% 78%, #bfa9ff 99%, transparent), radial-gradient(3px 3px at 6% 88%, #fdedc8 99%, transparent),
+    radial-gradient(2px 2px at 48% 8%, #ffc878 99%, transparent), radial-gradient(2px 2px at 73% 90%, #fdedc8 99%, transparent),
+    radial-gradient(2px 2px at 25% 40%, #bfa9ff 99%, transparent), radial-gradient(3px 3px at 95% 40%, #fdedc8 99%, transparent);
+}
+main, header, footer { position: relative; z-index: 1; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+header { padding: 18px 0 0; text-align: center; }
+header img { height: 88px; image-rendering: pixelated; }
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; padding: 20px 0 48px; }
+h1 { font-size: clamp(44px, 7vw, 76px); line-height: 0.95; margin: 0 0 14px; font-weight: 400; text-shadow: 0 5px 0 #180d32; }
+h1 span { color: var(--orange); }
+.lead { font-size: clamp(22px, 3vw, 28px); margin: 0 0 24px; max-width: 30ch; }
+.cta { display: flex; flex-direction: column; gap: 14px; max-width: 360px; }
+.btn {
+  display: block; text-align: center; text-decoration: none; padding: 14px 18px 12px; font-size: 30px; letter-spacing: 1px;
+  border: 4px solid var(--ink); border-radius: 14px; box-shadow: 0 6px 0 var(--ink); transition: transform .08s, box-shadow .08s;
+}
+.btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
+.btn.play { background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+.btn.store { background: var(--cream); color: var(--ink); }
+body.is-android .btn.store { order: -1; background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+body.is-android .btn.play { background: var(--cream); color: var(--ink); text-shadow: none; }
+.note { margin: 6px 2px 0; font-size: 19px; opacity: .8; }
+.phone {
+  justify-self: center; width: min(340px, 78vw); aspect-ratio: 9 / 16; border-radius: 34px; overflow: hidden;
+  border: 8px solid var(--cream); outline: 4px solid var(--ink); box-shadow: 0 18px 40px rgba(0,0,0,.45); background: #000;
+}
+.phone video { width: 100%; height: 100%; object-fit: cover; display: block; }
+section { padding: 8px 0 40px; }
+h2 { font-size: clamp(34px, 5vw, 48px); font-weight: 400; margin: 0 0 18px; text-align: center; }
+h2 span { color: var(--orange); }
+.features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.card { background: rgba(253, 237, 200, .09); border: 3px solid rgba(253, 237, 200, .35); border-radius: 14px; padding: 16px 14px 14px; text-align: center; }
+.card b { display: block; font-size: 34px; font-weight: 400; color: var(--orange); margin-bottom: 4px; }
+.card p { margin: 0; font-size: 20px; opacity: .92; }
+.shots { display: flex; gap: 14px; overflow-x: auto; padding: 6px 2px 18px; scroll-snap-type: x proximity; }
+.shots img { height: 420px; width: auto; border-radius: 16px; flex: 0 0 auto; scroll-snap-align: start; box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+.how { text-align: center; font-size: 26px; }
+.how p { margin: 6px auto; max-width: 36ch; }
+footer { text-align: center; padding: 26px 20px 40px; font-size: 18px; opacity: .8; }
+footer a { color: var(--cream); }
+@media (max-width: 820px) {
+  body { font-size: 20px; }
+  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 12px; }
+  .lead { margin-left: auto; margin-right: auto; }
+  .cta { margin: 0 auto; max-width: 420px; width: 100%; }
+  .features { grid-template-columns: 1fr 1fr; }
+  .shots img { height: 340px; }
+  header img { height: 70px; }
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="stars"></div>
+<header><img src="assets/logo.png" alt="Sky Cluck"></header>
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <h1>TAP. FLAP.<br><span>CLUCK!</span></h1>
+      <p class="lead">Fly a brave little chicken from the farm all the way to space.</p>
+      <div class="cta">
+        <a class="btn play" href="play/">PLAY NOW IN YOUR BROWSER</a>
+        <a class="btn store" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck">GET IT ON GOOGLE PLAY</a>
+        <p class="note">Free to play. iPhone version coming soon.</p>
+      </div>
+    </div>
+    <div class="phone">
+      <video src="assets/teaser.mp4" poster="assets/teaser-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Sky Cluck gameplay"></video>
+    </div>
+  </div>
+
+  <section>
+    <h2>WHAT'S IN THE <span>COOP</span></h2>
+    <div class="features">
+      <div class="card"><b>4 WORLDS</b><p>Sunrise Farm, Cloud Kingdom, Stormy Night and Space Coop.</p></div>
+      <div class="card"><b>2 WAYS TO PLAY</b><p>Classic Cluck for pure score chasing, Feather Frenzy for boosts and coins.</p></div>
+      <div class="card"><b>7 CHICKENS</b><p>Unlock new hens and crack egg crates for the rare Space Hen.</p></div>
+      <div class="card"><b>EVERY DAY</b><p>Daily missions, a weekly crate and a leaderboard in the app.</p></div>
+    </div>
+  </section>
+
+  <section class="how">
+    <h2>HOW TO <span>PLAY</span></h2>
+    <p>Tap (or click, or press Space) to flap.</p>
+    <p>Squeeze through the gaps. Miss one and you're grounded.</p>
+    <p>How far can you fly?</p>
+  </section>
+
+  <section>
+    <div class="shots" aria-label="Screenshots">
+      <img src="assets/shot-1-space.jpg" alt="Flying to space" loading="lazy">
+      <img src="assets/shot-2-classic.jpg" alt="Tap to flap through the gaps" loading="lazy">
+      <img src="assets/shot-3-cloud.jpg" alt="Boosts and feather coins" loading="lazy">
+      <img src="assets/shot-9-storm.jpg" alt="Stormy Night world" loading="lazy">
+      <img src="assets/shot-5-coop.jpg" alt="Unlock new chickens in the Coop" loading="lazy">
+      <img src="assets/shot-6-crate.jpg" alt="Crack egg crates for rare chickens" loading="lazy">
+      <img src="assets/shot-7-missions.jpg" alt="Daily missions and a weekly crate" loading="lazy">
+      <img src="assets/shot-4-modes.jpg" alt="Two ways to play" loading="lazy">
+    </div>
+    <div class="cta" style="margin: 8px auto 0;">
+      <a class="btn play" href="play/">PLAY NOW</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <p><a href="https://rafatbahar48.github.io/sky-cluck-privacy/">Privacy policy</a> &middot; The browser version has no ads and no account. Your best score stays in your browser.</p>
+  <p>&copy; 2026 Sky Cluck &middot; Font: Jersey 10, SIL Open Font License</p>
+</footer>
+<script>
+  if (/Android/i.test(navigator.userAgent)) document.body.classList.add('is-android');
+</script>
+</body>
+</html>

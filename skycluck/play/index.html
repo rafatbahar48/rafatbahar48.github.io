@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Play Sky Cluck in your browser</title>
+<meta name="description" content="Play Sky Cluck free in your browser: tap, click or press Space to flap a pixel-art chicken from the farm to outer space.">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2b1b4a">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="canonical" href="https://rafatbahar48.github.io/skycluck/play/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Play Sky Cluck in your browser">
+<meta property="og:description" content="Tap to flap a pixel-art chicken from the farm to outer space. Free, no download.">
+<meta property="og:image" content="https://rafatbahar48.github.io/skycluck/assets/og-image.jpg">
+<meta property="og:url" content="https://rafatbahar48.github.io/skycluck/play/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face { font-family: 'Jersey 10'; src: url('../assets/Jersey10.ttf') format('truetype'); font-display: swap; }
+:root { --cream: #fdedc8; --orange: #f2823d; --orange-dark: #c96a15; --ink: #1a0f33; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #1b0f33; color: var(--cream); font-family: 'Jersey 10', 'Trebuchet MS', sans-serif; -webkit-font-smoothing: none; }
+body { display: flex; align-items: center; justify-content: center; gap: 48px; padding: 16px;
+  background: linear-gradient(180deg, #46267a 0%, #180d32 100%); }
+#stage { position: relative; flex: 0 0 auto; background: #2b1b4a;
+  height: min(calc(100vh - 32px), 960px); width: calc(min(calc(100vh - 32px), 960px) * 0.5625); max-width: calc(100vw - 32px);
+  border: 8px solid var(--cream); outline: 4px solid var(--ink); border-radius: 34px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+#stage .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 34px; letter-spacing: 2px; }
+#game { position: relative; width: 100%; height: 100%; border: 0; display: block; background: #2b1b4a; }
+.side { width: 290px; font-size: 28px; line-height: 1.2; }
+.side img { width: 250px; image-rendering: pixelated; display: block; margin: 0 0 18px; }
+.side p { margin: 0 0 14px; }
+.btn { display: block; text-align: center; text-decoration: none; padding: 12px 14px 10px; font-size: 28px; margin: 0 0 12px;
+  border: 4px solid var(--ink); border-radius: 14px; box-shadow: 0 6px 0 var(--ink); background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+.btn.alt { background: var(--cream); color: var(--ink); text-shadow: none; }
+.rotate { display: none; }
+@media (max-width: 760px) {
+  body { padding: 0; gap: 0; }
+  .side { display: none; }
+  #stage { width: 100vw; height: 100vh; height: 100dvh; max-width: none; border: 0; outline: 0; border-radius: 0; box-shadow: none; }
+}
+@media (orientation: landscape) and (max-height: 520px) and (max-width: 1000px) {
+  .rotate { display: flex; position: fixed; inset: 0; z-index: 5; background: #2b1b4a; align-items: center; justify-content: center; text-align: center; font-size: 34px; padding: 24px; }
+}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="loading">LOADING...</div>
+  <iframe id="game" src="game/" title="Sky Cluck" allow="autoplay; web-share; fullscreen" loading="eager"></iframe>
+</div>
+<aside class="side">
+  <img src="../assets/logo.png" alt="Sky Cluck">
+  <p>TAP, CLICK OR PRESS SPACE TO FLAP.</p>
+  <p>SQUEEZE THROUGH THE GAPS.</p>
+  <a class="btn" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck">GET IT ON GOOGLE PLAY</a>
+  <a class="btn alt" href="../">BACK TO SKY CLUCK</a>
+  <p style="font-size:20px;opacity:.75">No ads, no account. Your best score stays in this browser.</p>
+</aside>
+<div class="rotate">TURN YOUR PHONE UPRIGHT TO PLAY</div>
+<script>
+  var frame = document.getElementById('game');
+  // Keep keyboard focus in the game so Space works right after loading.
+  frame.addEventListener('load', function () { try { frame.contentWindow.focus(); } catch (e) {} });
+  window.addEventListener('keydown', function (e) {
+    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); try { frame.contentWindow.focus(); } catch (err) {} }
+  });
+</script>
+</body>
+</html>
