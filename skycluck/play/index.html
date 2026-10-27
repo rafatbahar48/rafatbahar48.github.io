@@ -31,6 +31,8 @@ body { display: flex; align-items: center; justify-content: center; gap: 48px; p
 .side p { margin: 0 0 14px; }
 .btn { display: block; text-align: center; text-decoration: none; padding: 12px 14px 10px; font-size: 28px; margin: 0 0 12px;
   border: 4px solid var(--ink); border-radius: 14px; box-shadow: 0 6px 0 var(--ink); background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+.side .badge { display: block; line-height: 0; margin: 0 0 14px; }
+.side .badge img { width: auto; height: 62px; margin: 0; image-rendering: auto; }
 .btn.alt { background: var(--cream); color: var(--ink); text-shadow: none; }
 .rotate { display: none; }
 .getapp { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 4; height: 60px; padding: 0 6px 0 12px; align-items: center; gap: 10px;
@@ -63,8 +65,8 @@ body { display: flex; align-items: center; justify-content: center; gap: 48px; p
   <img src="../assets/logo.png" alt="Sky Cluck">
   <p>TAP, CLICK OR PRESS SPACE TO FLAP.</p>
   <p>SQUEEZE THROUGH THE GAPS.</p>
-  <a class="btn" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck&amp;referrer=utm_source%3Dskycluck_web%26utm_medium%3Dplay_side">GET IT ON GOOGLE PLAY</a>
-  <a class="btn" href="https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_play&amp;mt=8">DOWNLOAD ON THE APP STORE</a>
+  <a class="badge" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck&amp;referrer=utm_source%3Dskycluck_web%26utm_medium%3Dplay_side"><img src="../assets/badge-googleplay.png" alt="Get it on Google Play"></a>
+  <a class="badge" href="https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_play&amp;mt=8"><img src="../assets/badge-appstore.svg" alt="Download on the App Store"></a>
   <a class="btn alt" href="../">BACK TO SKY CLUCK</a>
   <p style="font-size:20px;opacity:.75">No ads, no account. Your best score stays in this browser.</p>
 </aside>

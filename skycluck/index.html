@@ -57,9 +57,11 @@ h1 span { color: var(--orange); }
 }
 .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
 .btn.play { background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
-.btn.store { background: var(--cream); color: var(--ink); }
-body.is-android .btn.store { order: -1; background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
-body.is-ios .btn.appstore { order: -1; background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+.badge { display: block; line-height: 0; transition: transform .08s; }
+.badge:active { transform: translateY(3px); }
+.badge img { height: 64px; width: auto; display: block; }
+body.is-android .badge.store { order: -1; }
+body.is-ios .badge.appstore { order: -1; }
 body.is-ios .btn.play { background: var(--cream); color: var(--ink); text-shadow: none; }
 body.is-android .btn.play { background: var(--cream); color: var(--ink); text-shadow: none; }
 .note { margin: 6px 2px 0; font-size: 19px; opacity: .8; }
@@ -103,8 +105,8 @@ footer a { color: var(--cream); }
       <p class="lead">Fly a brave little chicken from the farm all the way to space.</p>
       <div class="cta">
         <a class="btn play" href="play/">PLAY NOW IN YOUR BROWSER</a>
-        <a class="btn store" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck&amp;referrer=utm_source%3Dskycluck_web%26utm_medium%3Dlanding">GET IT ON GOOGLE PLAY</a>
-        <a class="btn store appstore" href="https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_web&amp;mt=8">DOWNLOAD ON THE APP STORE</a>
+        <a class="badge store" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck&amp;referrer=utm_source%3Dskycluck_web%26utm_medium%3Dlanding"><img src="assets/badge-googleplay.png" alt="Get it on Google Play"></a>
+        <a class="badge appstore" href="https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_web&amp;mt=8"><img src="assets/badge-appstore.svg" alt="Download on the App Store"></a>
         <p class="note">Free to play on iPhone and Android.</p>
       </div>
     </div>
