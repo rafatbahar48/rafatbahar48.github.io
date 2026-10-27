@@ -59,6 +59,8 @@ h1 span { color: var(--orange); }
 .btn.play { background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
 .btn.store { background: var(--cream); color: var(--ink); }
 body.is-android .btn.store { order: -1; background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+body.is-ios .btn.appstore { order: -1; background: var(--orange); color: #fff; text-shadow: 0 3px 0 var(--orange-dark); }
+body.is-ios .btn.play { background: var(--cream); color: var(--ink); text-shadow: none; }
 body.is-android .btn.play { background: var(--cream); color: var(--ink); text-shadow: none; }
 .note { margin: 6px 2px 0; font-size: 19px; opacity: .8; }
 .phone {
@@ -102,7 +104,8 @@ footer a { color: var(--cream); }
       <div class="cta">
         <a class="btn play" href="play/">PLAY NOW IN YOUR BROWSER</a>
         <a class="btn store" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck&amp;referrer=utm_source%3Dskycluck_web%26utm_medium%3Dlanding">GET IT ON GOOGLE PLAY</a>
-        <p class="note">Free to play. iPhone version coming soon.</p>
+        <a class="btn store appstore" href="https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_web&amp;mt=8">DOWNLOAD ON THE APP STORE</a>
+        <p class="note">Free to play on iPhone and Android.</p>
       </div>
     </div>
     <div class="phone">
@@ -149,6 +152,7 @@ footer a { color: var(--cream); }
 </footer>
 <script>
   if (/Android/i.test(navigator.userAgent)) document.body.classList.add('is-android');
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) document.body.classList.add('is-ios');
 </script>
 </body>
 </html>

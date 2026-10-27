@@ -64,6 +64,7 @@ body { display: flex; align-items: center; justify-content: center; gap: 48px; p
   <p>TAP, CLICK OR PRESS SPACE TO FLAP.</p>
   <p>SQUEEZE THROUGH THE GAPS.</p>
   <a class="btn" href="https://play.google.com/store/apps/details?id=com.rafatbahar.skycluck&amp;referrer=utm_source%3Dskycluck_web%26utm_medium%3Dplay_side">GET IT ON GOOGLE PLAY</a>
+  <a class="btn" href="https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_play&amp;mt=8">DOWNLOAD ON THE APP STORE</a>
   <a class="btn alt" href="../">BACK TO SKY CLUCK</a>
   <p style="font-size:20px;opacity:.75">No ads, no account. Your best score stays in this browser.</p>
 </aside>
@@ -81,13 +82,17 @@ body { display: flex; align-items: center; justify-content: center; gap: 48px; p
   window.addEventListener('keydown', function (e) {
     if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); try { frame.contentWindow.focus(); } catch (err) {} }
   });
-  // Phones: a slim "get the app" bar under the game (not on iPhone, where the app is not out yet).
+  // Phones: a slim "get the app" bar under the game (iPhone gets the App Store link).
   (function () {
     var ua = navigator.userAgent || '';
     var ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     var hidden = false;
     try { hidden = sessionStorage.getItem('hideGetApp') === '1'; } catch (e) {}
-    if (!ios && !hidden) document.body.classList.add('has-banner');
+    if (ios) {
+      var a = document.querySelector('#getapp a'); a.href = 'https://apps.apple.com/us/app/sky-cluck/id6818900554?ct=skycluck_banner&mt=8';
+      document.querySelector('#getapp small').textContent = 'FREE ON THE APP STORE';
+    }
+    if (!hidden) document.body.classList.add('has-banner');
     document.getElementById('getapp-close').addEventListener('click', function () {
       document.body.classList.remove('has-banner');
       try { sessionStorage.setItem('hideGetApp', '1'); } catch (e) {}
